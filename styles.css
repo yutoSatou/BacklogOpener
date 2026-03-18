@@ -43,18 +43,12 @@ body {
 
 .issue-row {
   display: grid;
-  grid-template-columns: minmax(240px, 1fr) minmax(120px, 160px) auto;
+  grid-template-columns: minmax(180px, 1fr) minmax(120px, 160px) auto;
   gap: 10px;
   align-items: center;
 }
 
-.project-chip-group {
-  display: grid;
-  gap: 8px;
-}
-
-.domain-chip,
-.project-chip {
+.domain-chip {
   display: inline-flex;
   align-items: center;
   min-height: 44px;
@@ -64,12 +58,6 @@ body {
   background: #f9fafb;
   font-weight: 600;
   overflow-wrap: anywhere;
-}
-
-.project-chip {
-  background: #eef2ff;
-  border-color: #c7d2fe;
-  color: #3730a3;
 }
 
 .issue-input {

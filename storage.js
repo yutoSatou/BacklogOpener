@@ -1,4 +1,4 @@
-const STORAGE_KEY = 'backlogProjects';
+const STORAGE_KEY = 'backlogDomains';
 
 function normalizeDomain(input) {
   const value = input.trim();
@@ -16,62 +16,13 @@ function normalizeDomain(input) {
   }
 }
 
-function normalizeProjectName(input) {
-  const value = input.trim();
-  return value || null;
-}
-
-function normalizeEntry(input) {
-  if (typeof input === 'string') {
-    const [domainPart, projectPart] = input.split(',');
-    const domain = normalizeDomain(domainPart ?? '');
-    const projectName = normalizeProjectName(projectPart ?? '');
-
-    if (!domain || !projectName) {
-      return null;
-    }
-
-    return { domain, projectName };
-  }
-
-  if (!input || typeof input !== 'object') {
-    return null;
-  }
-
-  const domain = normalizeDomain(input.domain ?? '');
-  const projectName = normalizeProjectName(input.projectName ?? '');
-  if (!domain || !projectName) {
-    return null;
-  }
-
-  return { domain, projectName };
-}
-
-async function getProjects() {
+async function getDomains() {
   const data = await chrome.storage.sync.get(STORAGE_KEY);
-  const entries = Array.isArray(data[STORAGE_KEY]) ? data[STORAGE_KEY] : [];
-  return entries.map(normalizeEntry).filter(Boolean);
+  return Array.isArray(data[STORAGE_KEY]) ? data[STORAGE_KEY] : [];
 }
 
-async function saveProjects(rawEntries) {
-  const normalizedEntries = [];
-  const seen = new Set();
-
-  rawEntries.forEach((entry) => {
-    const normalizedEntry = normalizeEntry(entry);
-    if (!normalizedEntry) {
-      return;
-    }
-
-    const key = `${normalizedEntry.domain}::${normalizedEntry.projectName}`;
-    if (seen.has(key)) {
-      return;
-    }
-
-    seen.add(key);
-    normalizedEntries.push(normalizedEntry);
-  });
-
-  await chrome.storage.sync.set({ [STORAGE_KEY]: normalizedEntries });
-  return normalizedEntries;
+async function saveDomains(rawDomains) {
+  const normalizedDomains = [...new Set(rawDomains.map(normalizeDomain).filter(Boolean))];
+  await chrome.storage.sync.set({ [STORAGE_KEY]: normalizedDomains });
+  return normalizedDomains;
 }
