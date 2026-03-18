@@ -9,14 +9,17 @@
   <body class="popup-body">
     <main class="card popup-card">
       <h1>Backlog Opener</h1>
-      <p class="description">登録済みドメインごとに課題番号を入力し、その行のボタンから該当のBacklog課題詳細を開けます。</p>
+      <p class="description">登録済みのドメイン/プロジェクトごとに課題番号を入力し、その行のボタンから Backlog 課題詳細を開けます。</p>
       <div id="rows" class="rows" aria-live="polite"></div>
       <p id="message" class="message" aria-live="polite"></p>
       <a class="link" href="options.html" target="_blank" rel="noreferrer">ドメイン設定を開く</a>
     </main>
     <template id="row-template">
       <form class="issue-row" data-role="issue-form">
-        <span class="domain-chip" data-role="domain-label"></span>
+        <div class="project-chip-group">
+          <span class="domain-chip" data-role="domain-label"></span>
+          <span class="project-chip" data-role="project-label"></span>
+        </div>
         <input
           class="issue-input"
           data-role="issue-input"

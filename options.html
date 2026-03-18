@@ -10,10 +10,13 @@
     <main class="page">
       <section class="card">
         <h1>Backlogドメイン設定</h1>
-        <p class="description">1行に1つずつ、Backlogのドメインを登録してください。<br />例: <code>example.backlog.jp</code> または <code>https://example.backlog.com</code></p>
+        <p class="description">
+          1行に1件ずつ、<strong>ドメイン名,プロジェクト名</strong> の形式で登録してください。<br />
+          例: <code>isidwinc.backlog.jp,ProjectName</code>
+        </p>
         <form id="domains-form" class="stack">
           <label for="domains">Backlogドメイン一覧</label>
-          <textarea id="domains" name="domains" rows="8" placeholder="team-a.backlog.jp&#10;team-b.backlog.com"></textarea>
+          <textarea id="domains" name="domains" rows="8" placeholder="team-a.backlog.jp,ProjectA&#10;team-b.backlog.com,ProjectB"></textarea>
           <button type="submit">保存する</button>
         </form>
         <p id="save-message" class="message" aria-live="polite"></p>
