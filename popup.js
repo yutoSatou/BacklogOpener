@@ -16,26 +16,24 @@ async function openIssue(domain, projectName, issueNumber) {
 function createRow(entry) {
   const fragment = rowTemplate.content.cloneNode(true);
   const form = fragment.querySelector('[data-role="issue-form"]');
-  const domainLabel = fragment.querySelector('[data-role="domain-label"]');
-  const projectLabel = fragment.querySelector('[data-role="project-label"]');
+  const labelElement = fragment.querySelector('[data-role="label"]');
   const issueInput = fragment.querySelector('[data-role="issue-input"]');
-  const { domain, projectName } = entry;
+  const { label, domain, projectName } = entry;
 
-  domainLabel.textContent = domain;
-  projectLabel.textContent = projectName;
+  labelElement.textContent = label;
 
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
 
     const issueNumber = issueInput.value.trim();
     if (!/^\d+$/.test(issueNumber)) {
-      setMessage(`「${projectName}」の課題番号は数字のみで入力してください。`, true);
+      setMessage(`「${label}」の課題番号は数字のみで入力してください。`, true);
       issueInput.focus();
       return;
     }
 
     await openIssue(domain, projectName, issueNumber);
-    setMessage(`「${projectName}-${issueNumber}」を ${domain} で開きました。`);
+    setMessage(`「${label}」で ${projectName}-${issueNumber} を開きました。`);
     issueInput.select();
   });
 
@@ -47,7 +45,7 @@ async function populateRows() {
 
   rowsContainer.innerHTML = '';
   if (projects.length === 0) {
-    setMessage('先にドメイン設定で「ドメイン名,プロジェクト名」を登録してください。', true);
+    setMessage('先に設定画面で「ラベル名,ドメイン名,プロジェクト名」を登録してください。', true);
     return;
   }
 
@@ -57,7 +55,7 @@ async function populateRows() {
   });
 
   rowsContainer.appendChild(rows);
-  setMessage('開きたい行に課題番号を入力してください。');
+  setMessage('開きたいラベルの行に課題番号を入力してください。');
 }
 
 populateRows();

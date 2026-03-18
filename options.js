@@ -8,7 +8,7 @@ function setSaveMessage(text, isError = false) {
 }
 
 function formatEntry(entry) {
-  return `${entry.domain},${entry.projectName}`;
+  return `${entry.label},${entry.domain},${entry.projectName}`;
 }
 
 async function populateProjects() {
@@ -23,12 +23,12 @@ domainsForm.addEventListener('submit', async (event) => {
   const normalizedEntries = await saveProjects(lines);
 
   if (normalizedEntries.length === 0) {
-    setSaveMessage('有効な「ドメイン名,プロジェクト名」を1件以上入力してください。', true);
+    setSaveMessage('有効な「ラベル名,ドメイン名,プロジェクト名」を1件以上入力してください。', true);
     return;
   }
 
   domainsTextarea.value = normalizedEntries.map(formatEntry).join('\n');
-  setSaveMessage(`${normalizedEntries.length} 件のドメイン/プロジェクト設定を保存しました。`);
+  setSaveMessage(`${normalizedEntries.length} 件の設定を保存しました。`);
 });
 
 populateProjects();

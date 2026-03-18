@@ -16,6 +16,11 @@ function normalizeDomain(input) {
   }
 }
 
+function normalizeLabel(input) {
+  const value = input.trim();
+  return value || null;
+}
+
 function normalizeProjectName(input) {
   const value = input.trim();
   return value || null;
@@ -23,28 +28,30 @@ function normalizeProjectName(input) {
 
 function normalizeEntry(input) {
   if (typeof input === 'string') {
-    const [domainPart, projectPart] = input.split(',');
+    const [labelPart, domainPart, projectPart] = input.split(',');
+    const label = normalizeLabel(labelPart ?? '');
     const domain = normalizeDomain(domainPart ?? '');
     const projectName = normalizeProjectName(projectPart ?? '');
 
-    if (!domain || !projectName) {
+    if (!label || !domain || !projectName) {
       return null;
     }
 
-    return { domain, projectName };
+    return { label, domain, projectName };
   }
 
   if (!input || typeof input !== 'object') {
     return null;
   }
 
+  const label = normalizeLabel(input.label ?? '');
   const domain = normalizeDomain(input.domain ?? '');
   const projectName = normalizeProjectName(input.projectName ?? '');
-  if (!domain || !projectName) {
+  if (!label || !domain || !projectName) {
     return null;
   }
 
-  return { domain, projectName };
+  return { label, domain, projectName };
 }
 
 async function getProjects() {
@@ -63,7 +70,7 @@ async function saveProjects(rawEntries) {
       return;
     }
 
-    const key = `${normalizedEntry.domain}::${normalizedEntry.projectName}`;
+    const key = `${normalizedEntry.label}::${normalizedEntry.domain}::${normalizedEntry.projectName}`;
     if (seen.has(key)) {
       return;
     }
