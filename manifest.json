@@ -1,0 +1,12 @@
+{
+  "manifest_version": 3,
+  "name": "Backlog Opener",
+  "version": "1.0.0",
+  "description": "Open Backlog issue detail pages by issue number across multiple registered domains.",
+  "permissions": ["storage", "tabs"],
+  "action": {
+    "default_title": "Backlog Opener",
+    "default_popup": "popup.html"
+  },
+  "options_page": "options.html"
+}

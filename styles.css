@@ -1,0 +1,141 @@
+:root {
+  color-scheme: light;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.5;
+  color: #1f2937;
+  background: #f3f4f6;
+}
+
+body {
+  margin: 0;
+  min-width: 520px;
+  background: #f3f4f6;
+}
+
+.popup-body {
+  min-width: 520px;
+}
+
+.page {
+  padding: 24px;
+}
+
+.card {
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+}
+
+.popup-card {
+  margin: 12px;
+}
+
+.stack {
+  display: grid;
+  gap: 12px;
+}
+
+.rows {
+  display: grid;
+  gap: 12px;
+}
+
+.issue-row {
+  display: grid;
+  grid-template-columns: minmax(180px, 1fr) minmax(120px, 160px) auto;
+  gap: 10px;
+  align-items: center;
+}
+
+.domain-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  background: #f9fafb;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.issue-input {
+  min-width: 0;
+}
+
+h1 {
+  margin-top: 0;
+  margin-bottom: 8px;
+  font-size: 1.5rem;
+}
+
+.description {
+  margin-top: 0;
+  margin-bottom: 16px;
+  color: #4b5563;
+  font-size: 0.95rem;
+}
+
+label {
+  font-weight: 600;
+}
+
+input,
+textarea,
+button {
+  font: inherit;
+}
+
+input,
+textarea {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  padding: 12px 14px;
+  background: #fff;
+}
+
+textarea {
+  resize: vertical;
+}
+
+button {
+  border: none;
+  border-radius: 10px;
+  padding: 12px 16px;
+  background: #2563eb;
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+button:hover {
+  background: #1d4ed8;
+}
+
+.message {
+  min-height: 1.5em;
+  margin-bottom: 0;
+  color: #2563eb;
+  font-size: 0.9rem;
+}
+
+.message.error {
+  color: #b91c1c;
+}
+
+.link {
+  display: inline-block;
+  margin-top: 12px;
+  color: #2563eb;
+  text-decoration: none;
+}
+
+code {
+  padding: 0.1em 0.35em;
+  border-radius: 6px;
+  background: #e5e7eb;
+}
