@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Backlog Opener</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="popup-body">
+    <main class="card popup-card">
+      <h1>Backlog Opener</h1>
+      <p class="description">登録済みのドメイン/プロジェクトごとに課題番号を入力し、その行のボタンから Backlog 課題詳細を開けます。</p>
+      <div id="rows" class="rows" aria-live="polite"></div>
+      <p id="message" class="message" aria-live="polite"></p>
+      <a class="link" href="options.html" target="_blank" rel="noreferrer">ドメイン設定を開く</a>
+    </main>
+    <template id="row-template">
+      <form class="issue-row" data-role="issue-form">
+        <div class="project-chip-group">
+          <span class="domain-chip" data-role="domain-label"></span>
+          <span class="project-chip" data-role="project-label"></span>
+        </div>
+        <input
+          class="issue-input"
+          data-role="issue-input"
+          name="issueNumber"
+          type="number"
+          min="1"
+          inputmode="numeric"
+          placeholder="課題番号"
+          required
+        />
+        <button type="submit">開く</button>
+      </form>
+    </template>
+    <script src="storage.js"></script>
+    <script src="popup.js"></script>
+  </body>
+</html>
