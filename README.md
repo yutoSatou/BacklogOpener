@@ -13,9 +13,9 @@
 
 ## 登録できる値
 
-- `ISID WinC,isidwinc.backlog.jp,ProjectName`
+- `Test Project,isidwinc.backlog.jp,ProjectName`
 - `開発B,https://example.backlog.com,AnotherProject`
 
 保存時にはドメインはホスト名へ正規化され、同一の `ラベル名 + ドメイン名 + プロジェクト名` の重複は自動で除去されます。
 
-例: `ISID WinC,isidwinc.backlog.jp,ProjectName` と課題番号 `4507` を指定すると、`https://isidwinc.backlog.jp/view/ProjectName-4507` を開きます。
+例: `Test Project,isidwinc.backlog.jp,ProjectName` と課題番号 `4507` を指定すると、`https://isidwinc.backlog.jp/view/ProjectName-4507` を開きます。
